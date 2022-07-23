@@ -1,42 +1,76 @@
-/*
- fix menu
- 2017/01/26 crytus corporation.
-*/
-function fm_hasClass(e, c)
-{
-    var classes = e.className;
-    if (!classes) return false;
-    if (classes === c) return true;
-    return classes.search("\\b" + c + "\\b") != -1;
-}
-function fm_addClass(e, c)
-{
-    if (fm_hasClass(e, c)) return;
-    var classes = e.className;
-    if (classes && classes[classes.length-1] != " ")
-        c = " " + c;
-    e.className += c;
-}
-function fm_removeClass(e, c)
-{
-    var pattern = new RegExp("\\b" + c + "\\b\\s*", "g");
-    e.className = e.className.replace(pattern, "");
-}
-function fm_addEvent(elm,listener,fn){
-	try{
-		elm.addEventListener(listener,fn,false);
-	}catch(e){
-		elm.attachEvent("on"+listener,fn);
-	}
-}
-fm_addEvent(window, 'load', function() {
-   var offsettop;
-   offsettop = 350;
-   fm_addEvent(window, 'scroll', function() {
-   if (offsettop < Math.max(document.body.scrollTop,document.documentElement.scrollTop)) {
-       fm_addClass(document.body, 'is-fixed-pagetop');
-   } if ((offsettop - 50) > Math.max(document.body.scrollTop,document.documentElement.scrollTop)) {
-       fm_removeClass(document.body, 'is-fixed-pagetop');
-   }
- });
-});
+particlesJS("particles-js", {
+  "particles": {
+    "number": {
+      "value": 100,//この数値を変更すると雪の数が増減できる
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    },
+    "color": {
+      "value": "#ffffff"
+    },
+    "shape": {
+      "type": "image",//形状は画像を指定
+      "stroke": {
+        "width": 3,
+        "color": "#fff"
+      },
+      "image": {
+        "src": "http://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/move02/5-5/img/snow.png",//画像を指定
+        "width": 120,
+        "height": 120
+      }
+    },
+    "opacity": {
+      "value": 0.7,
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 5,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 20,
+        "size_min": 0.1,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": false,
+    },
+    "move": {
+      "enable": true,
+      "speed": 3,//この数値を小さくするとゆっくりな動きになる
+      "direction": "bottom",//下に向かって落ちる
+      "random": true,//動きはランダム
+      "straight": false,//動きをとどめない
+      "out_mode": "out",//画面の外に出るように描写
+      "bounce": false,//跳ね返りなし
+      "attract": {
+        "enable": true,
+        "rotateX": 300,
+        "rotateY": 1200
+      }
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": false,
+      },
+      "onclick": {
+        "enable": false,
+      },
+      "resize": true
+    }
+  },
+  "retina_detect": true
+}); 
